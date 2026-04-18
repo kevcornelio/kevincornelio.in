@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Kevin Cornelio',
   author: 'Kevin Cornelio',
   headerTitle: 'Kevin Cornelio',
-  description: 'Portfolio and blog of Kevin Cornelio',
+  description: 'Cybersecurity leader. Writing about security, tech, and everything in between.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://kevincornelio.in',
@@ -12,8 +12,7 @@ const siteMetadata = {
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   email: '',
   github: 'https://github.com/kevcornelio',
-  // x: '',
-  // linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/kevin-cornelio-0b066728',
   locale: 'en-US',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
