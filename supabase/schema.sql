@@ -78,3 +78,39 @@ create policy "Users own their goals"
   on goals for all
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
+
+-- Children profiles (for vaccination tracker)
+create table if not exists children (
+  id uuid default gen_random_uuid() primary key,
+  user_id uuid references auth.users(id) on delete cascade not null,
+  name text not null,
+  dob date not null,
+  created_at timestamptz default now()
+);
+
+-- Vaccine records
+create table if not exists vaccine_records (
+  id uuid default gen_random_uuid() primary key,
+  user_id uuid references auth.users(id) on delete cascade not null,
+  child_id uuid references children(id) on delete cascade not null,
+  vaccine_key text not null,   -- e.g. 'dtap_1', 'mmr_1'
+  date_given date not null,
+  provider text,
+  lot_number text,
+  notes text,
+  created_at timestamptz default now(),
+  unique (child_id, vaccine_key)  -- one record per dose per child
+);
+
+alter table children enable row level security;
+alter table vaccine_records enable row level security;
+
+create policy "Users own their children"
+  on children for all
+  using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+
+create policy "Users own their vaccine_records"
+  on vaccine_records for all
+  using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);

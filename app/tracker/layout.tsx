@@ -10,6 +10,7 @@ const tabs = [
   { href: '/tracker/finances', label: 'Finances', icon: '$' },
   { href: '/tracker/health', label: 'Health', icon: '♥' },
   { href: '/tracker/goals', label: 'Goals', icon: '◎' },
+  { href: '/tracker/vaccinations', label: 'Vaccinations', icon: '💉' },
 ]
 
 export default function TrackerLayout({ children }: { children: React.ReactNode }) {
