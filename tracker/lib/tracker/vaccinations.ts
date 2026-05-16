@@ -1,64 +1,92 @@
 export interface VaccineScheduleEntry {
   key: string
   vaccine: string
-  dose: number
-  minAgeMonths: number
-  maxAgeMonths: number
-  catchUpMaxAgeMonths?: number
+  description: string
+  ageLabel: string
+  minAgeDays: number
+  maxAgeDays: number
   series: number
-  notes?: string
 }
 
 export const VACCINE_SCHEDULE: VaccineScheduleEntry[] = [
-  { key: 'hepb_1', vaccine: 'Hepatitis B (HepB)', dose: 1, minAgeMonths: 0, maxAgeMonths: 0, series: 3 },
-  { key: 'hepb_2', vaccine: 'Hepatitis B (HepB)', dose: 2, minAgeMonths: 1, maxAgeMonths: 2, series: 3 },
-  { key: 'hepb_3', vaccine: 'Hepatitis B (HepB)', dose: 3, minAgeMonths: 6, maxAgeMonths: 18, series: 3 },
-  { key: 'dtap_1', vaccine: 'DTaP', dose: 1, minAgeMonths: 2, maxAgeMonths: 2, series: 5 },
-  { key: 'dtap_2', vaccine: 'DTaP', dose: 2, minAgeMonths: 4, maxAgeMonths: 4, series: 5 },
-  { key: 'dtap_3', vaccine: 'DTaP', dose: 3, minAgeMonths: 6, maxAgeMonths: 6, series: 5 },
-  { key: 'dtap_4', vaccine: 'DTaP', dose: 4, minAgeMonths: 15, maxAgeMonths: 18, series: 5 },
-  { key: 'dtap_5', vaccine: 'DTaP', dose: 5, minAgeMonths: 48, maxAgeMonths: 72, series: 5 },
-  { key: 'hib_1', vaccine: 'Hib', dose: 1, minAgeMonths: 2, maxAgeMonths: 2, series: 4 },
-  { key: 'hib_2', vaccine: 'Hib', dose: 2, minAgeMonths: 4, maxAgeMonths: 4, series: 4 },
-  { key: 'hib_3', vaccine: 'Hib', dose: 3, minAgeMonths: 6, maxAgeMonths: 6, series: 4 },
-  { key: 'hib_4', vaccine: 'Hib', dose: 4, minAgeMonths: 12, maxAgeMonths: 15, series: 4 },
-  { key: 'ipv_1', vaccine: 'Polio (IPV)', dose: 1, minAgeMonths: 2, maxAgeMonths: 2, series: 4 },
-  { key: 'ipv_2', vaccine: 'Polio (IPV)', dose: 2, minAgeMonths: 4, maxAgeMonths: 4, series: 4 },
-  { key: 'ipv_3', vaccine: 'Polio (IPV)', dose: 3, minAgeMonths: 6, maxAgeMonths: 18, series: 4 },
-  { key: 'ipv_4', vaccine: 'Polio (IPV)', dose: 4, minAgeMonths: 48, maxAgeMonths: 72, series: 4 },
-  { key: 'pcv_1', vaccine: 'PCV (Pneumococcal)', dose: 1, minAgeMonths: 2, maxAgeMonths: 2, series: 4 },
-  { key: 'pcv_2', vaccine: 'PCV (Pneumococcal)', dose: 2, minAgeMonths: 4, maxAgeMonths: 4, series: 4 },
-  { key: 'pcv_3', vaccine: 'PCV (Pneumococcal)', dose: 3, minAgeMonths: 6, maxAgeMonths: 6, series: 4 },
-  { key: 'pcv_4', vaccine: 'PCV (Pneumococcal)', dose: 4, minAgeMonths: 12, maxAgeMonths: 15, series: 4 },
-  { key: 'rv_1', vaccine: 'Rotavirus (RV)', dose: 1, minAgeMonths: 2, maxAgeMonths: 2, catchUpMaxAgeMonths: 3, series: 3 },
-  { key: 'rv_2', vaccine: 'Rotavirus (RV)', dose: 2, minAgeMonths: 4, maxAgeMonths: 4, catchUpMaxAgeMonths: 5, series: 3 },
-  { key: 'rv_3', vaccine: 'Rotavirus (RV)', dose: 3, minAgeMonths: 6, maxAgeMonths: 6, catchUpMaxAgeMonths: 8, series: 3 },
-  { key: 'mmr_1', vaccine: 'MMR', dose: 1, minAgeMonths: 12, maxAgeMonths: 15, series: 2 },
-  { key: 'mmr_2', vaccine: 'MMR', dose: 2, minAgeMonths: 48, maxAgeMonths: 72, series: 2 },
-  { key: 'var_1', vaccine: 'Varicella', dose: 1, minAgeMonths: 12, maxAgeMonths: 15, series: 2 },
-  { key: 'var_2', vaccine: 'Varicella', dose: 2, minAgeMonths: 48, maxAgeMonths: 72, series: 2 },
-  { key: 'hepa_1', vaccine: 'Hepatitis A (HepA)', dose: 1, minAgeMonths: 12, maxAgeMonths: 23, series: 2 },
-  { key: 'hepa_2', vaccine: 'Hepatitis A (HepA)', dose: 2, minAgeMonths: 18, maxAgeMonths: 30, series: 2, notes: '6–18 months after dose 1' },
-  { key: 'flu_1', vaccine: 'Influenza (annual)', dose: 1, minAgeMonths: 6, maxAgeMonths: 7, series: 1, notes: 'First year: 2 doses 4 weeks apart' },
+  // Birth
+  { key: 'bcg',       vaccine: 'BCG',                    description: 'Bacillus Calmette–Guérin · Tuberculosis',              ageLabel: 'Birth',       minAgeDays: 0,    maxAgeDays: 3,     series: 1 },
+  { key: 'opv0',      vaccine: 'OPV 0',                  description: 'Oral Polio Vaccine · 0th dose',                        ageLabel: 'Birth',       minAgeDays: 0,    maxAgeDays: 3,     series: 1 },
+  { key: 'hepb1',     vaccine: 'Hepatitis B',            description: '1st dose',                                             ageLabel: 'Birth',       minAgeDays: 0,    maxAgeDays: 3,     series: 3 },
+  // 6 Weeks
+  { key: 'dtap1',     vaccine: 'DTwP / DTaP',            description: '1st dose · Diphtheria, Tetanus, Pertussis',            ageLabel: '6 Weeks',     minAgeDays: 42,   maxAgeDays: 69,    series: 5 },
+  { key: 'ipv1',      vaccine: 'IPV',                    description: '1st dose · Inactivated Polio Vaccine',                 ageLabel: '6 Weeks',     minAgeDays: 42,   maxAgeDays: 69,    series: 4 },
+  { key: 'hepb2',     vaccine: 'Hepatitis B',            description: '2nd dose',                                             ageLabel: '6 Weeks',     minAgeDays: 42,   maxAgeDays: 69,    series: 3 },
+  { key: 'hib1',      vaccine: 'Hib',                    description: '1st dose · Haemophilus influenzae type b',             ageLabel: '6 Weeks',     minAgeDays: 42,   maxAgeDays: 69,    series: 4 },
+  { key: 'rv1',       vaccine: 'Rotavirus',              description: '1st dose',                                             ageLabel: '6 Weeks',     minAgeDays: 42,   maxAgeDays: 69,    series: 3 },
+  { key: 'pcv1',      vaccine: 'PCV',                    description: '1st dose · Pneumococcal',                              ageLabel: '6 Weeks',     minAgeDays: 42,   maxAgeDays: 69,    series: 4 },
+  // 10 Weeks
+  { key: 'dtap2',     vaccine: 'DTwP / DTaP',            description: '2nd dose',                                             ageLabel: '10 Weeks',    minAgeDays: 70,   maxAgeDays: 97,    series: 5 },
+  { key: 'ipv2',      vaccine: 'IPV',                    description: '2nd dose',                                             ageLabel: '10 Weeks',    minAgeDays: 70,   maxAgeDays: 97,    series: 4 },
+  { key: 'hib2',      vaccine: 'Hib',                    description: '2nd dose',                                             ageLabel: '10 Weeks',    minAgeDays: 70,   maxAgeDays: 97,    series: 4 },
+  { key: 'rv2',       vaccine: 'Rotavirus',              description: '2nd dose',                                             ageLabel: '10 Weeks',    minAgeDays: 70,   maxAgeDays: 97,    series: 3 },
+  { key: 'pcv2',      vaccine: 'PCV',                    description: '2nd dose',                                             ageLabel: '10 Weeks',    minAgeDays: 70,   maxAgeDays: 97,    series: 4 },
+  // 14 Weeks
+  { key: 'dtap3',     vaccine: 'DTwP / DTaP',            description: '3rd dose',                                             ageLabel: '14 Weeks',    minAgeDays: 98,   maxAgeDays: 125,   series: 5 },
+  { key: 'ipv3',      vaccine: 'IPV',                    description: '3rd dose',                                             ageLabel: '14 Weeks',    minAgeDays: 98,   maxAgeDays: 125,   series: 4 },
+  { key: 'hib3',      vaccine: 'Hib',                    description: '3rd dose',                                             ageLabel: '14 Weeks',    minAgeDays: 98,   maxAgeDays: 125,   series: 4 },
+  { key: 'opv1',      vaccine: 'OPV 1',                  description: 'Oral Polio Vaccine · 1st dose',                        ageLabel: '14 Weeks',    minAgeDays: 98,   maxAgeDays: 125,   series: 2 },
+  { key: 'rv3',       vaccine: 'Rotavirus',              description: '3rd dose',                                             ageLabel: '14 Weeks',    minAgeDays: 98,   maxAgeDays: 125,   series: 3 },
+  { key: 'pcv3',      vaccine: 'PCV',                    description: '3rd dose',                                             ageLabel: '14 Weeks',    minAgeDays: 98,   maxAgeDays: 125,   series: 4 },
+  // 6 Months
+  { key: 'hepb3',     vaccine: 'Hepatitis B',            description: '3rd dose',                                             ageLabel: '6 Months',    minAgeDays: 168,  maxAgeDays: 210,   series: 3 },
+  { key: 'flu1',      vaccine: 'Influenza',              description: '1st dose (2 doses 4 weeks apart if first time)',       ageLabel: '6 Months',    minAgeDays: 168,  maxAgeDays: 210,   series: 1 },
+  // 9 Months
+  { key: 'mmr1',      vaccine: 'MMR',                    description: '1st dose · Measles, Mumps, Rubella',                  ageLabel: '9 Months',    minAgeDays: 270,  maxAgeDays: 300,   series: 2 },
+  { key: 'hepa1',     vaccine: 'Hepatitis A',            description: '1st dose',                                             ageLabel: '9 Months',    minAgeDays: 270,  maxAgeDays: 300,   series: 2 },
+  // 12 Months
+  { key: 'typhoid1',  vaccine: 'Typhoid Conjugate (TCV)',description: '1st dose',                                             ageLabel: '12 Months',   minAgeDays: 365,  maxAgeDays: 395,   series: 1 },
+  // 15 Months
+  { key: 'mmr2',      vaccine: 'MMR',                    description: '2nd dose (booster)',                                   ageLabel: '15 Months',   minAgeDays: 456,  maxAgeDays: 490,   series: 2 },
+  { key: 'var1',      vaccine: 'Varicella',              description: '1st dose · Chickenpox',                                ageLabel: '15 Months',   minAgeDays: 456,  maxAgeDays: 490,   series: 2 },
+  { key: 'pcvb',      vaccine: 'PCV Booster',            description: 'Booster dose',                                         ageLabel: '15 Months',   minAgeDays: 456,  maxAgeDays: 490,   series: 1 },
+  // 18 Months
+  { key: 'dtapb1',    vaccine: 'DTwP/DTaP Booster 1',   description: '1st booster dose',                                     ageLabel: '18 Months',   minAgeDays: 548,  maxAgeDays: 580,   series: 1 },
+  { key: 'ipvb1',     vaccine: 'IPV Booster 1',          description: '1st booster dose',                                     ageLabel: '18 Months',   minAgeDays: 548,  maxAgeDays: 580,   series: 1 },
+  { key: 'hibb1',     vaccine: 'Hib Booster',            description: 'Booster dose',                                         ageLabel: '18 Months',   minAgeDays: 548,  maxAgeDays: 580,   series: 1 },
+  { key: 'hepa2',     vaccine: 'Hepatitis A',            description: '2nd dose (≥6 months after 1st)',                       ageLabel: '18 Months',   minAgeDays: 548,  maxAgeDays: 580,   series: 2 },
+  // 2 Years
+  { key: 'typhoidb',  vaccine: 'Typhoid Booster',        description: 'Booster · every 3 years',                             ageLabel: '2 Years',     minAgeDays: 730,  maxAgeDays: 760,   series: 1 },
+  // Annual
+  { key: 'flu-ann',   vaccine: 'Influenza (Annual)',     description: 'Annual booster — repeat every year',                  ageLabel: 'Annual',      minAgeDays: 548,  maxAgeDays: 99999, series: 1 },
+  // 4–6 Years
+  { key: 'dtapb2',    vaccine: 'DTwP/DTaP Booster 2',   description: '2nd booster dose',                                     ageLabel: '4–6 Years',   minAgeDays: 1461, maxAgeDays: 2190,  series: 1 },
+  { key: 'opvb',      vaccine: 'OPV Booster',            description: 'Oral Polio Vaccine booster',                          ageLabel: '4–6 Years',   minAgeDays: 1461, maxAgeDays: 2190,  series: 1 },
+  { key: 'var2',      vaccine: 'Varicella',              description: '2nd dose (booster)',                                   ageLabel: '4–6 Years',   minAgeDays: 1461, maxAgeDays: 2190,  series: 2 },
+  { key: 'typhoidb2', vaccine: 'Typhoid Booster',        description: 'Repeat every 3 years',                                ageLabel: '4–6 Years',   minAgeDays: 1461, maxAgeDays: 2190,  series: 1 },
+  // 10–12 Years
+  { key: 'tdap',      vaccine: 'Tdap / Td',              description: 'Tetanus, Diphtheria, Pertussis booster',              ageLabel: '10–12 Years', minAgeDays: 3652, maxAgeDays: 4383,  series: 1 },
+  { key: 'hpv',       vaccine: 'HPV',                    description: 'Human Papillomavirus · 2–3 doses',                    ageLabel: '10–12 Years', minAgeDays: 3652, maxAgeDays: 4383,  series: 1 },
 ]
 
 export interface VisitGroup {
   label: string
-  ageMonths: number
+  ageDays: number
   vaccines: VaccineScheduleEntry[]
 }
 
-export const VISIT_GROUPS: VisitGroup[] = [
-  { label: 'Birth', ageMonths: 0, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths === 0) },
-  { label: '1–2 months', ageMonths: 1, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths === 1) },
-  { label: '2 months', ageMonths: 2, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths === 2) },
-  { label: '4 months', ageMonths: 4, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths === 4) },
-  { label: '6 months', ageMonths: 6, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths === 6) },
-  { label: '12–15 months', ageMonths: 12, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths >= 12 && v.minAgeMonths <= 15) },
-  { label: '15–18 months', ageMonths: 15, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths > 15 && v.minAgeMonths <= 18) },
-  { label: '18–30 months', ageMonths: 18, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths > 18 && v.minAgeMonths <= 30) },
-  { label: '4–6 years', ageMonths: 48, vaccines: VACCINE_SCHEDULE.filter(v => v.minAgeMonths >= 48) },
-]
+function buildVisitGroups(): VisitGroup[] {
+  const seen = new Set<string>()
+  const groups: VisitGroup[] = []
+  for (const v of VACCINE_SCHEDULE) {
+    if (!seen.has(v.ageLabel)) {
+      seen.add(v.ageLabel)
+      groups.push({
+        label: v.ageLabel,
+        ageDays: v.minAgeDays,
+        vaccines: VACCINE_SCHEDULE.filter(s => s.ageLabel === v.ageLabel),
+      })
+    }
+  }
+  return groups
+}
+
+export const VISIT_GROUPS = buildVisitGroups()
 
 export interface Child {
   id: string
@@ -80,21 +108,31 @@ export interface VaccineRecord {
   created_at: string
 }
 
-export function getAgeMonths(dob: string): number {
-  const birth = new Date(dob)
+export function getAgeDays(dob: string): number {
+  const birth = new Date(dob + 'T00:00:00')
   const now = new Date()
-  return (now.getFullYear() - birth.getFullYear()) * 12 + (now.getMonth() - birth.getMonth())
+  return Math.floor((now.getTime() - birth.getTime()) / 86400000)
+}
+
+export function formatAge(ageDays: number): string {
+  if (ageDays < 14) return `${ageDays} days old`
+  if (ageDays < 60) return `${Math.round(ageDays / 7)} weeks old`
+  const months = Math.floor(ageDays / 30.44)
+  if (months < 24) return `${months} months old`
+  const years = Math.floor(ageDays / 365.25)
+  const remMonths = Math.floor((ageDays - years * 365.25) / 30.44)
+  return remMonths > 0 ? `${years}y ${remMonths}m old` : `${years} years old`
 }
 
 export function getScheduleStatus(
   entry: VaccineScheduleEntry,
-  ageMonths: number,
+  ageDays: number,
   record?: VaccineRecord
 ): 'given' | 'due' | 'upcoming' | 'overdue' | 'missed' {
   if (record) return 'given'
-  const catchUpMax = entry.catchUpMaxAgeMonths ?? entry.maxAgeMonths + 6
-  if (catchUpMax < ageMonths) return 'missed'
-  if (ageMonths >= entry.minAgeMonths && ageMonths <= entry.maxAgeMonths + 2) return 'due'
-  if (ageMonths > entry.maxAgeMonths + 2 && ageMonths <= catchUpMax) return 'overdue'
+  if (entry.maxAgeDays === 99999) return ageDays >= entry.minAgeDays ? 'due' : 'upcoming'
+  if (ageDays > entry.maxAgeDays + 60) return 'missed'
+  if (ageDays > entry.maxAgeDays) return 'overdue'
+  if (ageDays >= entry.minAgeDays - 14) return 'due'
   return 'upcoming'
 }
