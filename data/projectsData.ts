@@ -14,12 +14,6 @@ const projectsData: Project[] = [
     imgSrc: '/static/images/projects/wassup-mlr.jpg',
     href: 'https://www.wasp-mlr.com',
   },
-  {
-    title: 'Personal Tracker',
-    description: `A private dashboard for running life like a project: tasks, finances, health,
-    habits, and vaccination schedules in one place. Built with Next.js and Supabase, designed
-    for exactly one very demanding user — me.`,
-  },
 ]
 
 export default projectsData
