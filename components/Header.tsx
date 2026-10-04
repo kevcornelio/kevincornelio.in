@@ -16,11 +16,11 @@ const Header = () => {
     <header className={headerClass}>
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="flex items-center justify-between">
-          <div className="mr-3">
-            <Logo />
+          <div className="mr-3 flex">
+            <Logo className="h-9 w-9" />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
-            <div className="text-gradient hidden h-6 text-2xl font-bold sm:block">
+            <div className="hidden text-lg leading-tight font-semibold tracking-tight text-gray-900 sm:block dark:text-gray-100">
               {siteMetadata.headerTitle}
             </div>
           ) : (
@@ -36,7 +36,7 @@ const Header = () => {
               <Link
                 key={link.title}
                 href={link.href}
-                className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100"
+                className="hover:text-primary-700 dark:hover:text-primary-400 m-1 text-[15px] font-medium text-gray-600 transition-colors dark:text-gray-300"
               >
                 {link.title}
               </Link>

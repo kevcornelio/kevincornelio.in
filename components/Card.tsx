@@ -6,7 +6,7 @@ const Card = ({ title, description, imgSrc, href }) => (
     <div
       className={`${
         imgSrc && 'h-full'
-      } hover:shadow-primary-100/60 dark:hover:shadow-primary-950/40 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-md shadow-gray-200/50 transition-shadow duration-300 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900 dark:shadow-none dark:hover:shadow-lg`}
+      } overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow duration-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-900`}
     >
       {imgSrc &&
         (href ? (
@@ -29,7 +29,7 @@ const Card = ({ title, description, imgSrc, href }) => (
           />
         ))}
       <div className="p-6">
-        <h2 className="mb-3 text-2xl leading-8 font-bold tracking-tight">
+        <h2 className="mb-3 text-xl leading-8 font-semibold tracking-tight">
           {href ? (
             <Link href={href} aria-label={`Link to ${title}`}>
               {title}
@@ -42,7 +42,7 @@ const Card = ({ title, description, imgSrc, href }) => (
         {href && (
           <Link
             href={href}
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 text-base leading-6 font-medium"
+            className="text-primary-700 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300 text-base leading-6 font-medium"
             aria-label={`Link to ${title}`}
           >
             Learn more &rarr;

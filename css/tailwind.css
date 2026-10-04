@@ -8,36 +8,23 @@
 @theme {
   /* Font families */
   --font-sans:
-    var(--font-outfit), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    var(--font-inter), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
 
   /* Colors */
   /* Copied from https://tailwindcss.com/docs/theme#default-theme-variable-reference */
-  /* Indigo — fresh, modern personal brand */
-  --color-primary-50: oklch(0.962 0.018 272.314);
-  --color-primary-100: oklch(0.93 0.034 272.788);
-  --color-primary-200: oklch(0.87 0.065 274.039);
-  --color-primary-300: oklch(0.785 0.115 274.713);
-  --color-primary-400: oklch(0.673 0.182 276.935);
-  --color-primary-500: oklch(0.585 0.233 277.117);
-  --color-primary-600: oklch(0.511 0.262 276.966);
-  --color-primary-700: oklch(0.457 0.24 277.023);
-  --color-primary-800: oklch(0.398 0.195 277.366);
-  --color-primary-900: oklch(0.359 0.144 278.697);
-  --color-primary-950: oklch(0.257 0.09 281.288);
-
-  /* Coral — warm accent for gradients and highlights */
-  --color-accent-50: oklch(0.971 0.018 32);
-  --color-accent-100: oklch(0.941 0.036 32);
-  --color-accent-200: oklch(0.887 0.068 30);
-  --color-accent-300: oklch(0.813 0.106 28);
-  --color-accent-400: oklch(0.736 0.155 27);
-  --color-accent-500: oklch(0.678 0.185 26);
-  --color-accent-600: oklch(0.6 0.185 26);
-  --color-accent-700: oklch(0.52 0.16 26);
-  --color-accent-800: oklch(0.45 0.13 26);
-  --color-accent-900: oklch(0.4 0.105 27);
-  --color-accent-950: oklch(0.28 0.075 27);
+  /* Blue — calm, professional primary */
+  --color-primary-50: oklch(0.97 0.014 254.604);
+  --color-primary-100: oklch(0.932 0.032 255.585);
+  --color-primary-200: oklch(0.882 0.059 254.128);
+  --color-primary-300: oklch(0.809 0.105 251.813);
+  --color-primary-400: oklch(0.707 0.165 254.624);
+  --color-primary-500: oklch(0.623 0.214 259.815);
+  --color-primary-600: oklch(0.546 0.245 262.881);
+  --color-primary-700: oklch(0.488 0.243 264.376);
+  --color-primary-800: oklch(0.424 0.199 265.638);
+  --color-primary-900: oklch(0.379 0.146 265.522);
+  --color-primary-950: oklch(0.282 0.091 267.935);
 
   --color-gray-50: oklch(0.985 0.002 247.839);
   --color-gray-100: oklch(0.967 0.003 264.542);
@@ -94,37 +81,11 @@
 }
 
 @layer utilities {
-  /* Indigo → coral gradient text for hero and brand moments */
-  .text-gradient {
-    background-image: linear-gradient(to right, var(--color-primary-500), var(--color-accent-500));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-
-  .dark .text-gradient {
-    background-image: linear-gradient(to right, var(--color-primary-400), var(--color-accent-400));
-  }
-
-  /* Soft tinted glow pinned to the top of the page */
-  .bg-page-glow {
-    background-image:
-      radial-gradient(60rem 28rem at 12% -6%, oklch(0.93 0.034 272.788 / 0.55), transparent 65%),
-      radial-gradient(48rem 24rem at 88% -8%, oklch(0.941 0.036 32 / 0.45), transparent 65%);
-    background-repeat: no-repeat;
-  }
-
-  .dark .bg-page-glow {
-    background-image:
-      radial-gradient(60rem 28rem at 12% -6%, oklch(0.257 0.09 281.288 / 0.45), transparent 65%),
-      radial-gradient(48rem 24rem at 88% -8%, oklch(0.28 0.075 27 / 0.3), transparent 65%);
-  }
-
   .prose {
     & a {
-      color: var(--color-primary-500);
+      color: var(--color-primary-700);
       &:hover {
-        color: var(--color-primary-600);
+        color: var(--color-primary-800);
       }
       & code {
         color: var(--color-primary-400);
@@ -138,15 +99,15 @@
       font-weight: 600;
     }
     & :where(code):not(pre code) {
-      color: var(--color-indigo-500);
+      color: var(--color-primary-700);
     }
   }
 
   .prose-invert {
     & a {
-      color: var(--color-primary-500);
+      color: var(--color-primary-400);
       &:hover {
-        color: var(--color-primary-400);
+        color: var(--color-primary-300);
       }
       & code {
         color: var(--color-primary-400);
